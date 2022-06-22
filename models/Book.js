@@ -20,7 +20,7 @@ Book.init(
         allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     category_id: {
@@ -38,7 +38,7 @@ Book.init(
         },
       },
     review: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     }
   },
