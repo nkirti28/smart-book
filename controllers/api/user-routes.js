@@ -1,9 +1,10 @@
 const router = require("express").Router();
+const bcrypt = require("bcrypt");
 const { User } = require("../../models");
 
 router.get("/", (req, res) => {
   User.findAll({
-    attributes: ["id", "username", "email", "password"],
+    attributes: { exclude: ["password"] },
   })
     .then((dbUserData) => res.json(dbUserData))
     .catch((err) => {
@@ -17,7 +18,7 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "username", "email", "password"],
+    attributes: { exclude: ["password"] },
   })
     .then((dbUserData) => {
       if (!dbUserData) {
@@ -46,6 +47,24 @@ router.post("/", (req, res) => {
 
         res.json(dbUserData);
       });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.put("/:id", (req, res) => {
+  User.update(req.body, {
+    individualHooks: true,
+    where: { id: req.params.id },
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(404).json({ message: "no User with that id was found" });
+        return;
+      }
+      res.json(dbUserData);
     })
     .catch((err) => {
       console.log(err);

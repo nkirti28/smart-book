@@ -44,6 +44,23 @@ router.post("/", (req, res) => {
     });
 });
 
+router.put("/:id", (req, res) => {
+  Category.update(req.body, {
+    where: { id: req.params.id },
+  })
+    .then((dbCategoryData) => {
+      if (!dbCategoryData) {
+        res.status(404).json({ message: "no Categore with that id was found" });
+        return;
+      }
+      res.json(dbCategoryData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 router.delete("/:id", (req, res) => {
   Category.destroy({
     where: {
