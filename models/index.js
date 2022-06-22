@@ -2,7 +2,7 @@
 const Book = require('./Book');
 const Category = require('./Category');
 const User = require('./User');
-const UserCart = require('./UserCart');
+const ShoppingCart = require('./ShoppingCart');
 
 // Book belongsTo Category
 Book.belongsTo(Category, {
@@ -14,17 +14,17 @@ Category.hasMany(Book, {
   foreignKey: 'category_id'
 });
 
-// Books belongToMany Users (through UserCart)
+// Books belongToMany Users (through ShoppingCart)
 
 Book.belongsToMany(User, {
-  through: UserCart,
+  through: ShoppingCart,
   foreignKey: 'book_id'
 });
 
-// Users belongToMany Books (through UserCart)
+// Users belongToMany Books (through ShoppingCart)
 
 User.belongsToMany(Book, {
-  through: UserCart,
+  through: ShoppingCart,
   foreignKey: 'user_id'
 });
 
@@ -32,5 +32,5 @@ module.exports = {
   Book,
   Category,
   User,
-  UserCart,
+  ShoppingCart,
 };
