@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
   Category.findOne({
     where: {
       id: req.params.id,
@@ -38,6 +38,25 @@ router.post("/", (req, res) => {
     category_name: req.body.category_name,
   })
     .then((dbCategoryData) => res.json(dbCategoryData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  Category.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbCategoryData) => {
+      if (!dbCategoryData) {
+        res.status(404).json({ message: "No Category found with this id" });
+        return;
+      }
+      res.json(dbCategoryData);
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);

@@ -1,7 +1,7 @@
 // import models
 const Category = require("./Category");
+const User = require("./User");
 // const Book = require("./Book");
-// const User = require("./User");
 // const UserCart = require("./UserCart");
 
 // // Book belongsTo Category
@@ -28,4 +28,4 @@ const Category = require("./Category");
 //   foreignKey: "user_id",
 // });
 
-module.exports = { Category }; // need to add other models
+module.exports = { Category, User }; // need to add other models
