@@ -7,9 +7,11 @@ UserStory.md
 Category.js
 ShoppingCart.js
 User.js
+
 category-seeds.js
 shoppingCart-seeds.js
 user-seeds.js
+
 category-routes.js
 shoppingCart-routes.js
 user-routes.js

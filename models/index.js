@@ -16,17 +16,17 @@ Category.hasMany(Book, {
 
 // Books belongToMany Users (through ShoppingCart)
 
-//Book.belongsToMany(User, {
-  //through: ShoppingCart,
-  //foreignKey: 'book_id'
-//});
+Book.belongsToMany(User, {
+  through: ShoppingCart,
+  foreignKey: 'book_id'
+});
 
-// Users belongToMany Books (through ShoppingCart)
+//Users belongToMany Books (through ShoppingCart)
 
-//User.belongsToMany(Book, {
-  //through: ShoppingCart,
-  //foreignKey: 'user_id'
-//});
+User.belongsToMany(Book, {
+  through: ShoppingCart,
+  foreignKey: 'user_id'
+});
 
 module.exports = {
   Book,
