@@ -6,7 +6,7 @@ const shoppingCartRoutes = require('./shoppingCart-routes');
 
 router.use('/categories', categoryRoutes);
 router.use('/books', bookRoutes);
-router.use('/user', userRoutes);
-router.use('./shoppingCart', shoppingCartRoutes);
+router.use('/users', userRoutes);
+router.use('/shoppingcart', shoppingCartRoutes);
 
 module.exports = router;
