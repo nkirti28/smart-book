@@ -1,5 +1,5 @@
 const express = require("express");
-// const routes = require("./controllers/api");
+const routes = require("./controllers/api");
 const sequelize = require("./config/connection");
 require("dotenv").config();
 // const path = require("path");
@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 // app.set("view engine", "handlebars");
 
 // turn on routes
-// app.use(routes);
+app.use(routes);
 
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(() => {

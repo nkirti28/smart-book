@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Category } = require('../../models');
+const { ShoppingCart } = require('../../models');
 
 
 router.get('/', (req, res) => {
-    Category.findAll()
-      .then(dbCategoryData => res.json(dbCategoryData))
+    ShoppingCart.findAll()
+      .then(dbShoppingCartData => res.json(dbShoppingCartData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
