@@ -37,10 +37,15 @@ Book.init(
             isDecimal: true
         },
       },
+    image_url: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
     review: {
         type: DataTypes.TEXT,
         allowNull: false,
-    }
+    },
+    
   },
   {
     sequelize,
