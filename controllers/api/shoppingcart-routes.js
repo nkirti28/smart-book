@@ -1,13 +1,13 @@
 // *********************************************************************************
 // shoppingcart-api-routes.js - this file offers a set of routes for displaying and saving data to the db
 // *********************************************************************************
-
 // Dependencies
-
 const router = require("express").Router();
 const { User, Book, ShoppingCart } = require("../../models");
+// Import the custom middleware
+const withAuth = require("../utils/auth");
 
-//The `\api\shoppingCart` routes
+//The `/controllers/api/shoppingCart` routes
 
 // get all shoppingCart items from user session "Admin"
 router.get("/api/shoppingcart", (req, res) => {
