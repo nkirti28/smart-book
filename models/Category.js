@@ -15,7 +15,6 @@ Category.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // add refrences to books
   },
   {
     sequelize,
