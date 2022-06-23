@@ -2,6 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const { User } = require("../../models");
 
+// GET ALL USERS
 router.get("/", (req, res) => {
   User.findAll({
     attributes: { exclude: ["password"] },
@@ -13,6 +14,7 @@ router.get("/", (req, res) => {
     });
 });
 
+// GET SINGLE USER
 router.get("/:id", (req, res) => {
   User.findOne({
     where: {
@@ -33,6 +35,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// CREATE USER
 router.post("/", (req, res) => {
   User.create({
     username: req.body.username,
@@ -54,6 +57,47 @@ router.post("/", (req, res) => {
     });
 });
 
+// LOGIN
+router.post("/login", (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email,
+    },
+  }).then((dbUserData) => {
+    if (!dbUserData) {
+      res.status(400).json({ message: "no user with that email address" });
+      return;
+    }
+
+    const validPassword = dbUserData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect Password!" });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+
+      res.json({ user: dbUserData, message: "Successfully logged in!" });
+    });
+  });
+});
+
+// LOGOUT
+router.post("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
+// UPDATE USER
 router.put("/:id", (req, res) => {
   User.update(req.body, {
     individualHooks: true,
@@ -72,6 +116,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// DELETE USER
 router.delete("/:id", (req, res) => {
   User.destroy({
     where: {
