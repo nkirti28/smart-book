@@ -43,8 +43,10 @@ app.use(require('./controllers/'));
 // turn on routes
 app.use(routes);
 
-// turn on connection to db and server
+// sync sequelize models to the database, then turn on the server
 sequelize.sync({ force: false }).then(() => {
-  // true will recrete the tables, set back to false after creating
-  app.listen(PORT, () => console.log("Now listening on port " + PORT));
+  // true will recreate the tables, set back to false after creating
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}!`);
+  });
 });

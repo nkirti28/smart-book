@@ -1,11 +1,12 @@
 {
   "name": "smart-book",
   "version": "1.0.0",
-  "description": "",
+  "description": "The Smart Book is a full stack web application where a user can register, browse in a book database, select books and add them to a shopping cart, keep record of user’s cart history, and request authentication to have access to the  functionality.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "watch": "nodemon server.js",
     "seed": "node seeds/index.js"
   },
   "repository": {
