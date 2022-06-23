@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Category } = require("../../models"); // need to add other Models
+const { Category, Book } = require("../../models"); // need to add other Models
 
 router.get("/", (req, res) => {
   Category.findAll({
@@ -18,12 +18,12 @@ router.get("/:id", (req, res) => {
       id: req.params.id,
     },
     attributes: ["id", "category_name"],
-    // include: [
-    //   {
-    //     model: Book,
-    //     attributes: ["id", "book_name", "price"],
-    //   },
-    // ],
+    include: [
+      {
+        model: Book,
+        attributes: ["id", "book_name", "price"],
+      },
+    ],
   })
     .then((dbCategoryData) => {
       if (!dbCategoryData) {

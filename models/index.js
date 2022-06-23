@@ -1,18 +1,18 @@
 // import models
 const Category = require("./Category");
 const User = require("./User");
-// const Book = require("./Book");
+const Book = require("./Book");
 // const UserCart = require("./UserCart");
 
 // // Book belongsTo Category
-// Book.belongsTo(Category, {
-//   foreignKey: "category_id",
-// });
+Book.belongsTo(Category, {
+  foreignKey: "category_id",
+});
 
 // // Categories have many Books
-// Category.hasMany(Book, {
-//   foreignKey: "category_id",
-// });
+Category.hasMany(Book, {
+  foreignKey: "category_id",
+});
 
 // // Books belongToMany Users (through UserCart)
 
@@ -28,4 +28,4 @@ const User = require("./User");
 //   foreignKey: "user_id",
 // });
 
-module.exports = { Category, User }; // need to add other models
+module.exports = { Category, User, Book }; // need to add other models
