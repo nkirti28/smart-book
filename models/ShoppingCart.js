@@ -48,4 +48,4 @@ ShoppingCart.init(
   }
 );
 
-module.exports = Product;
+module.exports = ShoppingCart;
