@@ -52,7 +52,7 @@ router.get("/category/:id", (req, res) => {
         return;
       }
       const category = dbCategoryData.get({ plain: true });
-
+      console.log(category.books);
       res.render("single-category", { category });
     })
     .catch((err) => {
@@ -60,6 +60,5 @@ router.get("/category/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
-
 
 module.exports = router;
