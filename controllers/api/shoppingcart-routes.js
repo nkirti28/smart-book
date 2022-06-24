@@ -32,9 +32,9 @@ router.get("/api/shoppingcart", (req, res) => {
     });
 });
 
-// Get route for retrieving a single shoppingcart for a Userid
+// Get route for retrieving a single shoppingcart for a user_id
 router.get("/api/shoppingcart/:user_id", withAuth, async (req, res) => {
-  // GET one shopping cart for a Userid
+  // GET one shopping cart for a user_id
   // Use the custom middleware before allowing the user to access the shopping cart
   try {
     const shoppingCartData = await ShoppingCart.find(req.params.user_id, {
