@@ -2,7 +2,7 @@ const express = require("express");
 const routes = require("./controllers");
 const sequelize = require("./config/connection");
 require("dotenv").config();
- const path = require("path");
+const path = require("path");
 
 // helper function
  //const helpers = require("./utils/helpers");
