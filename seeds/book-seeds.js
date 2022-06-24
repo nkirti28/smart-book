@@ -1,4 +1,5 @@
-const { Book } = require('../models');
+const sequelize = require("../config/connection");
+const { Book } = require("../models");
 
 const bookData = [
   {
