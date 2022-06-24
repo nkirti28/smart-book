@@ -31,6 +31,7 @@ router.get("/category", (req, res) => {
 
 // DISPLAY SINGLE Categories
 router.get("/category/:id", (req, res) => {
+  console.log(req.params.id);
   Category.findOne({
     where: {
       id: req.params.id,
@@ -59,5 +60,6 @@ router.get("/category/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 
 module.exports = router;
