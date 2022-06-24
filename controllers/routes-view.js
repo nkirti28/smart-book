@@ -14,4 +14,7 @@ router.get("/logout", (req,res)=>{
 router.get("/signup", (req, res) => {
   res.render("signup");
 });
+router.get("/category", (req, res) => {
+  res.render("category");
+});
 module.exports = router;
