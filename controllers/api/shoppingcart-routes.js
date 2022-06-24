@@ -5,7 +5,7 @@
 const router = require("express").Router();
 const { User, Book, ShoppingCart } = require("../../models");
 // Import the custom middleware
-const withAuth = require("../utils/auth");
+const withAuth = require("../../utils/auth");
 
 //The `/controllers/api/shoppingCart` routes
 
