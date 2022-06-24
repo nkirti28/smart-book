@@ -15,7 +15,10 @@ Category.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // add refrences to books
+    category_image: {
+      type: DataTypes.STRING,
+      defaultValue: "https://via.placeholder.com/150",
+    },
   },
   {
     sequelize,

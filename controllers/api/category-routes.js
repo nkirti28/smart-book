@@ -3,7 +3,7 @@ const { Category, Book } = require("../../models"); // need to add other Models
 
 router.get("/", (req, res) => {
   Category.findAll({
-    attributes: ["id", "category_name"],
+    attributes: ["id", "category_name", "category_image"],
   })
     .then((dbCategoryData) => res.json(dbCategoryData))
     .catch((err) => {
@@ -17,7 +17,7 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "category_name"],
+    attributes: ["id", "category_name", "category_image"],
     include: [
       {
         model: Book,
