@@ -44,7 +44,7 @@ ShoppingCart.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "shoppingCart",
+    modelName: "shoppingcart",
   }
 );
 

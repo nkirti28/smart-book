@@ -54,3 +54,5 @@ router.get("/api/shoppingcart/:user_id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+module.exports = router;

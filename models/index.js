@@ -19,13 +19,13 @@ User.hasOne(ShoppingCart, {
   allowNull: true,
 });
 
+//Books belongsToMany User (through ShoppingCart)
 Book.belongsToMany(User, {
   through: ShoppingCart,
   foreignKey: "book_id",
 });
 
 //Users belongToMany Books (through ShoppingCart)
-
 User.belongsToMany(Book, {
   through: ShoppingCart,
   foreignKey: "user_id",
