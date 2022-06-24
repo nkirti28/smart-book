@@ -14,10 +14,10 @@ Category.hasMany(Book, {
   foreignKey: "category_id",
 });
 
-// //User has one shopping cart associated
-// User.hasOne(ShoppingCart, {
-//   allowNull: true,
-// });
+//User has one shopping cart associated
+User.hasOne(ShoppingCart, {
+  allowNull: true,
+});
 
 Book.belongsToMany(User, {
   through: ShoppingCart,
