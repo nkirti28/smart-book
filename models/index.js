@@ -4,27 +4,28 @@ const Category = require("./Category");
 const User = require("./User");
 const ShoppingCart = require("./ShoppingCart");
 
-// // Book belongsTo Category
+// Book belongsTo Category
 Book.belongsTo(Category, {
   foreignKey: "category_id",
 });
 
-// // Categories have many Books
+// Category have many Books
 Category.hasMany(Book, {
   foreignKey: "category_id",
 });
 
-//User has one shopping cart associated
-User.hasOne(ShoppingCart, {
+//User belongsTo shopping cart associated
+ShoppingCart.belongsTo(User, {
   allowNull: true,
 });
 
+// User belongsToMany Books (through ShoppingCart)
 Book.belongsToMany(User, {
   through: ShoppingCart,
   foreignKey: "book_id",
 });
 
-//Users belongToMany Books (through ShoppingCart)
+//Books belongsToMany Users (through ShoppingCart)
 User.belongsToMany(Book, {
   through: ShoppingCart,
   foreignKey: "user_id",
