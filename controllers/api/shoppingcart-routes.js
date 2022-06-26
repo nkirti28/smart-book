@@ -38,11 +38,11 @@ router.get("/", async (req, res) => {
 // Get route for retrieving a single shoppingcart for a user_id
 // GET one shopping cart for a user_id
 // Use the custom middleware before allowing the user to access the shopping cart
-router.get("/:id", withAuth, async (req, res) => {
+router.get("/:user_id", withAuth, async (req, res) => {
   try {
     await ShoppingCart.findAll({
       where: {
-        user_id: req.session.user_id,
+        user_id: req.params.user_id,
       },
       include: [
         {
