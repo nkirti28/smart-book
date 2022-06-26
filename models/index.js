@@ -14,14 +14,24 @@ Category.hasMany(Book, {
   foreignKey: "category_id",
 });
 
-// shopping cart belongs to User
+//shopping cart belongs to User
 ShoppingCart.belongsTo(User, {
   foreignKey: "user_id",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+  // onDelete: function () {
+  //   return this.delete();
+  // }, // TODO: remove this when we remove the association from  the models.
+  // onUpdate: function () {
+  //   return this.update();
+  // }, // TODO: remove this when we remove the association from the models.
 });
 
 // shopping cart belongs to Books
 ShoppingCart.belongsTo(Book, {
   foreignKey: "book_id",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
 });
 
 // Book belongToMany User (through ShoppingCart)

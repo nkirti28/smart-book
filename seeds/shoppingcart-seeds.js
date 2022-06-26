@@ -24,12 +24,28 @@ const shoppingCartData = [
     book_id: 10,
   },
   {
-    user_id: 1,
+    user_id: 3,
     book_id: 10,
   },
   {
     user_id: 3,
     book_id: 13,
+  },
+  {
+    user_id: 4,
+    book_id: 15,
+  },
+  {
+    user_id: 4,
+    book_id: 16,
+  },
+  {
+    user_id: 5,
+    book_id: 18,
+  },
+  {
+    user_id: 5,
+    book_id: 20,
   },
 ];
 
