@@ -14,10 +14,12 @@ Category.hasMany(Book, {
   foreignKey: "category_id",
 });
 
+// shopping cart belongs to User
 ShoppingCart.belongsTo(User, {
   foreignKey: "user_id",
 });
 
+// shopping cart belongs to Books
 ShoppingCart.belongsTo(Book, {
   foreignKey: "book_id",
 });

@@ -42,7 +42,7 @@ router.get("/:id", withAuth, async (req, res) => {
   try {
     await ShoppingCart.findAll({
       where: {
-        user_id: req.params.id,
+        user_id: req.session.user_id,
       },
       include: [
         {
@@ -135,13 +135,15 @@ router.delete("/:user_id", async (req, res) => {
   }
 });
 
-// get login page
-router.get("/login", (req, res) => {
+// LOGOUT
+router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
-  res.render("login");
 });
 
 module.exports = router;
