@@ -17,4 +17,13 @@ router.get("/signup", (req, res) => {
 router.get("/category", (req, res) => {
   res.render("category");
 });
+
+router.get("/profile", (req, res) => {
+  const posts=[]
+  res.render("single-profile")
+})
+
+
+
+
 module.exports = router;

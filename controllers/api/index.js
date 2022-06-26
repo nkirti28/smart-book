@@ -1,31 +1,10 @@
-// import models
-const Category = require("./Category");
-const User = require("./User");
-// const Book = require("./Book");
-// const UserCart = require("./UserCart");
+const router = require("express").Router();
 
-// // Book belongsTo Category
-// Book.belongsTo(Category, {
-//   foreignKey: "category_id",
-// });
-
-// // Categories have many Books
-// Category.hasMany(Book, {
-//   foreignKey: "category_id",
-// });
-
-// // Books belongToMany Users (through UserCart)
-
-// Book.belongsToMany(User, {
-//   through: UserCart,
-//   foreignKey: "book_id",
-// });
-
-// // Users belongToMany Books (through UserCart)
-
-// User.belongsToMany(Book, {
-//   through: UserCart,
-//   foreignKey: "user_id",
-// });
-
-module.exports = { Category, User }; // need to add other models
+// const categoryRoutes = require("./category-routes");
+const userRoutes = require("./user-routes");
+//const pageRoutes = require("./routes-view")
+// prefix routes
+// router.use("/categories", categoryRoutes);
+router.use("/users", userRoutes);
+// router.use('/', pageRoutes)
+module.exports = router;
