@@ -14,18 +14,21 @@ Category.hasMany(Book, {
   foreignKey: "category_id",
 });
 
-//User belongsTo shopping cart associated
 ShoppingCart.belongsTo(User, {
-  allowNull: true,
+  foreignKey: "user_id",
 });
 
-// Books belongsToMany User (through ShoppingCart)
+ShoppingCart.belongsTo(Book, {
+  foreignKey: "book_id",
+});
+
+// Book belongToMany User (through ShoppingCart)
 Book.belongsToMany(User, {
   through: ShoppingCart,
   foreignKey: "book_id",
 });
 
-//Books belongsToMany Users (through ShoppingCart)
+// User belongToMany Books(through ShoppingCart)
 User.belongsToMany(Book, {
   through: ShoppingCart,
   foreignKey: "user_id",
