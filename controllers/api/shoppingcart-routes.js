@@ -93,6 +93,48 @@ router.post("/", async (req, res) => {
   }
 });
 
+// PUT route for updating the shopping cart data
+router.put("/", async (req, res) => {
+  try {
+    ShoppingCart.update(req.body, {
+      where: {
+        user_id: req.session.user_id,
+      },
+    }).then((dbShoppingCartData) => {
+      if (!dbShoppingCartData) {
+        res.status(404).json({ message: "No Shopping cart data found." });
+        return;
+      }
+      res.json(dbShoppingCartData);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err); // 404 error response
+  }
+});
+
+// DELETE /shoppingCartData/delete with user_id
+router.delete("/:user_id", async (req, res) => {
+  try {
+    ShoppingCart.destroy({
+      where: {
+        user_id: req.session.user_id,
+      },
+    }).then((dbShoppingCartData) => {
+      if (!dbShoppingCartData) {
+        res
+          .status(404)
+          .json({ message: "No Shopping cart data found for this user_id." });
+        return;
+      }
+      res.json(dbShoppingCartData);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err); // 404 error response
+  }
+});
+
 // get login page
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
