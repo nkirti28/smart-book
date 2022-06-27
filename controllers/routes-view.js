@@ -66,7 +66,7 @@ router.get("/category/:id", (req, res) => {
 // DISPLAY ALL Books
 router.get("/book", (req, res) => {
   Book.findAll({
-    attributes: ["id", "book_name", "image_url"],
+    attributes: ["id", "book_name", "price", "image_url"],
   }).then((dbBookData) => {
     const books = dbBookData.map((book) =>
       book.get({ plain: true })
