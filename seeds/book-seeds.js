@@ -120,7 +120,7 @@ const bookData = [
     review: 'Great read. Keeps you on the edge of your seat. Highly recommend. - Shootah87'
   },
   {
-    book_name: 'The Postman Awlays Rings Twice',
+    book_name: 'The Postman Always Rings Twice',
     author_name: 'James M. Cain',
     description: 'First published in 1934 and banned in Boston for its explosive mixture of violence and eroticism, The Postman Always Rings Twice is a classic of the roman noir. It established James M. Cain as a major novelist with an unsparing vision of Americas bleak underside, and was acknowledged by Albert Camus as the model for The Stranger.',  
     category_id: 3,

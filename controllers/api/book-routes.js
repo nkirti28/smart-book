@@ -34,12 +34,12 @@ router.get('/:id', (req, res) => {
         },
     ]
   })
-    .then(dbProductData => {
-        if (!dbProductData) {
+    .then(dbBookData => {
+        if (!dbBookData) {
             res.status(404).json({ message: 'No book found with this id' });
             return;
         }
-        res.json(dbProductData);
+        res.json(dbBookData);
     })
     .catch(err => {
         console.log(err);
