@@ -17,8 +17,7 @@ Category.init(
     },
     category_image: {
       type: DataTypes.STRING,
-      allowNull: false,
-      //defaultValue: "https://via.placeholder.com/150",
+      defaultValue: "https://via.placeholder.com/150",
     },
   },
   {
