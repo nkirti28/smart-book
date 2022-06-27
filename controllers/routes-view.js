@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { response } = require("express");
 const { Category, Book } = require("../models");
 
-router.get("/homepage", (req, res) => {
+router.get("/", (req, res) => {
   res.render("homepage", { loggedIn: true });
 });
 
