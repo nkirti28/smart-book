@@ -5,11 +5,11 @@ require("dotenv").config();
 const path = require("path");
 
 // helper function
-// const helpers = require("./utils/helpers");
+ //const helpers = require("./utils/helpers");
 
 // // handlebars
-// const exphbs = require("express-handlebars");
-// const hbs = exphbs.create({ helpers });
+ const exphbs = require("express-handlebars");
+const hbs = exphbs.create({});
 
 // session (connects session to sequelize Database) --> authentication
 const session = require("express-session");
@@ -32,20 +32,16 @@ app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+ app.use(express.static(path.join(__dirname, "public")));
 
-app.use(require('./controllers/'));
-
-// app.engine("handlebars", hbs.engine);
-// app.set("view engine", "handlebars");
+ app.engine("handlebars", hbs.engine);
+ app.set("view engine", "handlebars");
 
 // turn on routes
 app.use(routes);
 
-// sync sequelize models to the database, then turn on the server
+// turn on connection to db and server
 sequelize.sync({ force: false }).then(() => {
-  // true will recreate the tables, set back to false after creating
-  app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}!`);
-  });
+  // true will recrete the tables, set back to false after creating
+  app.listen(PORT, () => console.log("Now listening on port " + PORT));
 });

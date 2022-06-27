@@ -15,6 +15,10 @@ Category.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    category_image: {
+      type: DataTypes.STRING,
+      defaultValue: "https://via.placeholder.com/150",
+    },
   },
   {
     sequelize,
