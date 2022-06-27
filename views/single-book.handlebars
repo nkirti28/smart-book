@@ -9,18 +9,18 @@
 </header>
 
 <div class="col-lg">
-  <div class="card h-100 w-50 mx-auto">
+  <div class="card mx-auto w-75">
     <!-- Product image-->
     <div class="media">
       <img
-        class="align-self-start mr-3 border border-dark rounded h-75 w-50"
+        class="align-self-start mr-3 border border-dark rounded h-50 w-25"
         src={{book.image_url}}
         alt={{book.book_name}}
       />
       <div class="media-body text-center">
         <h2 class="mt-0">{{book.book_name}}</h2>
         <h4 class="mt-0">{{book.author_name}}</h4>
-        <h5 class="mt-0">{{book.price}}</h5>
+        <h5 class="mt-0">${{book.price}}</h5>
         <div class="card-footer p-3 pt-0 border-top-0 bg-transparent">
           <div class="text-center">
             <button type="button" class="btn btn-warning m-3">Add to Cart</button>
