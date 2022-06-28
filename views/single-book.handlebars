@@ -1,24 +1,14 @@
-<!-- Header-->
-<header class="bg-dark py-5">
-  <div class="container px-4 px-lg-5 my-5">
-    <div class="text-center text-white">
-      <h1 class="display-4 fw-bolder text-warning">Books</h1>
-      <p class="lead fw-normal text-white-50 mb-0">Choose Your Adventure</p>
-    </div>
-  </div>
-</header>
-
 <section>
-  <div class="col-lg">
+  <div class="col-lg py-5">
     <div class="card mx-auto w-75">
       <!-- Product image-->
-      <div class="media">
+      <div class="media d-flex">
         <img
-          class="align-self-start mr-3 border border-dark rounded h-50 w-25"
+          class="d-none d-lg-block my-auto border border-dark rounded h-50 w-25"
           src={{book.image_url}}
           alt={{book.book_name}}
         />
-        <div class="media-body text-center">
+        <div class="media-body m-3 text-center">
           <h2 class="mt-0 font-weight-bold">{{book.book_name}}</h2>
           <h4 class="mt-0">{{book.author_name}}</h4>
           <h5 class="mt-0">${{book.price}}</h5>
