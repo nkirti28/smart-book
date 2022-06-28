@@ -111,9 +111,19 @@ router.get("/book/:id", (req, res) => {
 });
 
 // DISPLAY ALL Shopping Carts of All Users
-router.get("/shoppingcart", (req, res) => {
-  ShoppingCart.findAll({
+router.get("/shoppingcart", async (req, res) => {
+  await ShoppingCart.findAll({
     attributes: ["id", "user_id", "book_id"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+      {
+        model: Book,
+        attributes: ["book_name", "price"],
+      },
+    ],
   }).then((dbShoppingCartData) => {
     const carts = dbShoppingCartData.map((cartItem) =>
       cartItem.get({ plain: true })
