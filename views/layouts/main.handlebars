@@ -35,37 +35,14 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           {{#if loggedIn}}
             <li class="nav-item">
-              <a class="nav-link text-white" href="/profile">My Profile</a>
-            </li>
-            <li class="nav-item dropdown show">
-              <a
-                class="btn btn-secondary dropdown-toggle text-white"
-                style="background-color:#343a40"
-                href="#"
-                role="button"
-                id="dropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Browse Books
-              </a>
-
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="/category">By Category</a>
-                <a class="dropdown-item" href="/book">All Books</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/shoppingcart">Shopping Cart</a>
-            </li>
-            <li class="nav-item">
               <button
                 id="logout"
                 class="nav-link text-white btn btn-link"
               >Logout</button>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/profile">My Profile</a>
+            </li>
           {{else}}
             <li class="nav-item">
               <a class="nav-link text-white" href="/login">Login</a>
@@ -73,8 +50,32 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="/signup">Sign-up</a>
             </li>
-            
           {{/if}}
+          <li class="nav-item dropdown show">
+            <a
+              class="nav-link dropdown text-white"
+              style="background-color:#343a40"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Browse Books
+            </a>
+
+            <div
+              class="dropdown-menu border border-light"
+              aria-labelledby="dropdownMenuLink"
+            >
+              <a class="dropdown-item text-dark" href="/category">By Category</a>
+              <a class="dropdown-item text-dark" href="/book">All Books</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/shoppingcart">Shopping Cart</a>
+          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" id="search-form">
           <input
