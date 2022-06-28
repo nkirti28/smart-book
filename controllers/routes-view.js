@@ -132,6 +132,4 @@ router.get("/shoppingcart", async (req, res) => {
 });
 
 
-
-
 module.exports = router;
