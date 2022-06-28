@@ -1,0 +1,68 @@
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder text-warning">Books</h1>
+      <p class="lead fw-normal text-white-50 mb-0">Choose Your Adventure</p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="col-lg">
+    <div class="card mx-auto w-75">
+      <!-- Product image-->
+      <div class="media">
+        <img
+          class="align-self-start mr-3 border border-dark rounded h-50 w-25"
+          src={{book.image_url}}
+          alt={{book.book_name}}
+        />
+        <div class="media-body text-center">
+          <h2 class="mt-0 font-weight-bold">{{book.book_name}}</h2>
+          <h4 class="mt-0">{{book.author_name}}</h4>
+          <h5 class="mt-0">${{book.price}}</h5>
+          <div class="card-footer p-3 pt-0 border-top-0 bg-transparent">
+            <div class="text-center">
+              <button type="button" class="btn btn-warning m-3">Add to Cart</button>
+            </div>
+          </div>
+          <div class="mt-o text-left">
+            <h5>Description</h5>
+            <p>{{book.description}}</p>
+            <h5>Reviews</h5>
+            <p><em>{{book.review}}</em></p>
+          </div>
+          <div class="mt-o text-center font-weight-bold">
+            <a href="/category/{{book.category_id}}"><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-arrow-left"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                ></path>
+              </svg>Return to
+              {{book.category.category_name}}
+              Category</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+    <!--Start of Cards DIV-->
+    <div
+      class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+    >
+
+    </div>
+  </div>
+</section>
