@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const apiRoutes = require("./api");
 const routesView = require("./routes-view");
-//const shoppingcartRoutes = require("./shoppingcart-routes"); //
+// const shoppingcartRoutes = require("./shoppingcartview-routes"); //
 
 router.use("/api", apiRoutes);
 router.use("/", routesView);

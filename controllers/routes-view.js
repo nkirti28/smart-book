@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { response } = require("express");
 const { User, Category, Book, ShoppingCart } = require("../models");
+const withAuth = require("../utils/auth");
 
 router.get("/", (req, res) => {
   res.render("homepage", { loggedIn: true });
@@ -17,8 +18,6 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-
-
 // DISPLAY ALL Categories
 router.get("/category", (req, res) => {
   Category.findAll({
@@ -27,7 +26,7 @@ router.get("/category", (req, res) => {
     const categories = dbCategoryData.map((category) =>
       category.get({ plain: true })
     );
-    res.render("category", { categories });
+    res.render("category", { categories, loggedIn: true });
   });
 });
 
@@ -55,7 +54,7 @@ router.get("/category/:id", (req, res) => {
       }
       const category = dbCategoryData.get({ plain: true });
       console.log(category.books);
-      res.render("single-category", { category });
+      res.render("single-category", { category, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);
@@ -68,46 +67,49 @@ router.get("/book", (req, res) => {
   Book.findAll({
     attributes: ["id", "book_name", "price", "image_url"],
   }).then((dbBookData) => {
-    const books = dbBookData.map((book) =>
-      book.get({ plain: true })
-    );
-    res.render("book", { books });
+    const books = dbBookData.map((book) => book.get({ plain: true }));
+    res.render("book", { books, loggedIn: true });
   });
 });
-
 
 // DISPLAY Single book
 router.get("/book/:id", (req, res) => {
   console.log(req.params.id);
   Book.findOne({
     where: {
-        id: req.params.id
+      id: req.params.id,
     },
-    attributes: ['id', 'book_name', 'author_name', 'description', 'category_id', 'price', 'image_url', 'review'],
+    attributes: [
+      "id",
+      "book_name",
+      "author_name",
+      "description",
+      "category_id",
+      "price",
+      "image_url",
+      "review",
+    ],
     include: [
-        {
-            model: Category,
-            attributes: ['id', 'category_name']
-        },
-    ]
+      {
+        model: Category,
+        attributes: ["id", "category_name"],
+      },
+    ],
   })
-  .then((dbBookData) => {
-    if (!dbBookData) {
-      res
-        .status(404)
-        .json({ message: "No Book with that id was found." });
-      return;
-    }
-    const book = dbBookData.get({ plain: true });
-    console.log(book)
-    res.render("single-book", { book });
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+    .then((dbBookData) => {
+      if (!dbBookData) {
+        res.status(404).json({ message: "No Book with that id was found." });
+        return;
+      }
+      const book = dbBookData.get({ plain: true });
+      console.log(book);
+      res.render("single-book", { book, loggedIn: true });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
-
 
 // DISPLAY ALL Shopping Carts of All Users
 router.get("/shoppingcart", async (req, res) => {
@@ -127,11 +129,44 @@ router.get("/shoppingcart", async (req, res) => {
     const carts = dbShoppingCartData.map((cartItem) =>
       cartItem.get({ plain: true })
     );
-    res.render("shoppingcart", { carts });
+    res.render("shoppingcart", { carts, loggedIn: true });
   });
 });
 
-
-
+// DISPLAY ALL Shopping Carts of loggedIn user
+router.get("/:user_id", withAuth, async (req, res) => {
+  try {
+    await ShoppingCart.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      attributes: ["id", "user_id", "book_id"],
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Book,
+          attributes: ["book_name", "price"],
+        },
+      ],
+    }).then((dbShoppingCartData) => {
+      if (!dbShoppingCartData) {
+        res
+          .status(404)
+          .json({ message: "No ShoppingCart data available for this userId." });
+        return;
+      }
+      const carts = dbShoppingCartData.map((cartItem) => {
+        cartItem.get({ plain: true });
+      });
+      res.render("shoppingcart", { carts, loggedIn: true });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
