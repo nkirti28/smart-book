@@ -15,6 +15,8 @@ async function signupFormHandler(event) {
       }),
       headers: { "Content-Type": "application/json" },
     });
+    const result = await response.json();
+    console.log(result)
     // .then((response) => {
     //   console.log(response);
     // });
