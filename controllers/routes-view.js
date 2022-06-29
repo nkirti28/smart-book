@@ -4,15 +4,17 @@ const { User, Category, Book, ShoppingCart } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", (req, res) => {
-  res.render("homepage", { loggedIn: true });
+  res.render("homepage", { loggedIn: req.session.loggedIn });
 });
 
+// LOGIN
 router.get("/login", (req, res) => {
-  res.render("login");
-});
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
 
-router.get("/logout", (req, res) => {
-  res.render("logout");
+  res.render("login");
 });
 
 router.get("/signup", (req, res) => {
@@ -23,12 +25,17 @@ router.get("/signup", (req, res) => {
 router.get("/category", (req, res) => {
   Category.findAll({
     attributes: ["id", "category_name", "category_image"],
-  }).then((dbCategoryData) => {
-    const categories = dbCategoryData.map((category) =>
-      category.get({ plain: true })
-    );
-    res.render("category", { categories, loggedIn: true });
-  });
+  })
+    .then((dbCategoryData) => {
+      const categories = dbCategoryData.map((category) =>
+        category.get({ plain: true })
+      );
+      res.render("category", { categories });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // DISPLAY SINGLE Categories
@@ -66,10 +73,15 @@ router.get("/category/:id", (req, res) => {
 router.get("/book", (req, res) => {
   Book.findAll({
     attributes: ["id", "book_name", "price", "image_url"],
-  }).then((dbBookData) => {
-    const books = dbBookData.map((book) => book.get({ plain: true }));
-    res.render("book", { books });
-  });
+  })
+    .then((dbBookData) => {
+      const books = dbBookData.map((book) => book.get({ plain: true }));
+      res.render("book", { books });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // DISPLAY Single book
