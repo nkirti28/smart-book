@@ -1,12 +1,3 @@
-$(document).ready(function () {
-  // ******************** Event listeners *********************
-  $(document).on("click", (event) => {
-    // Continue browsing button clicked
-    if ($(event.target).attr("id") === "continueBrowsing") {
-      window.location.href = "/category";
-    }
-  });
-});
 
 
 async function addClickHandler(event) {
@@ -37,3 +28,15 @@ async function addClickHandler(event) {
 }
 
 document.querySelector(".addCart-btn").addEventListener("click", addClickHandler);
+
+
+
+$(document).ready(function () {
+  // ******************** Event listeners *********************
+  $(document).on("click", (event) => {
+    // Continue browsing button clicked
+    if ($(event.target).attr("id") === "continueBrowsing") {
+      window.location.href = "/category";
+    }
+  });
+});
