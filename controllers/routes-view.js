@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { response } = require("express");
+// const { response } = require("express");
 const { Category, Book } = require("../models");
 
 router.get("/", (req, res) => {
@@ -24,12 +24,17 @@ router.get("/signup", (req, res) => {
 router.get("/category", (req, res) => {
   Category.findAll({
     attributes: ["id", "category_name", "category_image"],
-  }).then((dbCategoryData) => {
-    const categories = dbCategoryData.map((category) =>
-      category.get({ plain: true })
-    );
-    res.render("category", { categories });
-  });
+  })
+    .then((dbCategoryData) => {
+      const categories = dbCategoryData.map((category) =>
+        category.get({ plain: true })
+      );
+      res.render("category", { categories });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // DISPLAY SINGLE Categories
@@ -67,10 +72,15 @@ router.get("/category/:id", (req, res) => {
 router.get("/book", (req, res) => {
   Book.findAll({
     attributes: ["id", "book_name", "price", "image_url"],
-  }).then((dbBookData) => {
-    const books = dbBookData.map((book) => book.get({ plain: true }));
-    res.render("book", { books });
-  });
+  })
+    .then((dbBookData) => {
+      const books = dbBookData.map((book) => book.get({ plain: true }));
+      res.render("book", { books });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // DISPLAY Single book
