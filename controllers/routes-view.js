@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { response } = require("express");
-const { Category, Book } = require("../models");
+const { User, Category, Book, ShoppingCart } = require("../models");
+const withAuth = require("../utils/auth");
 
 router.get("/", (req, res) => {
   res.render("homepage", { loggedIn: true });
@@ -26,7 +27,7 @@ router.get("/category", (req, res) => {
     const categories = dbCategoryData.map((category) =>
       category.get({ plain: true })
     );
-    res.render("category", { categories });
+    res.render("category", { categories, loggedIn: true });
   });
 });
 
@@ -108,6 +109,64 @@ router.get("/book/:id", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+// DISPLAY ALL Shopping Carts of All Users
+router.get("/shoppingcart", async (req, res) => {
+  await ShoppingCart.findAll({
+    attributes: ["id", "user_id", "book_id"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+      {
+        model: Book,
+        attributes: ["book_name", "price"],
+      },
+    ],
+  }).then((dbShoppingCartData) => {
+    const carts = dbShoppingCartData.map((cartItem) =>
+      cartItem.get({ plain: true })
+    );
+    res.render("shoppingcart", { carts, loggedIn: true });
+  });
+});
+
+// DISPLAY ALL Shopping Carts of loggedIn user
+router.get("/:user_id", withAuth, async (req, res) => {
+  try {
+    await ShoppingCart.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      attributes: ["id", "user_id", "book_id"],
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Book,
+          attributes: ["book_name", "price"],
+        },
+      ],
+    }).then((dbShoppingCartData) => {
+      if (!dbShoppingCartData) {
+        res
+          .status(404)
+          .json({ message: "No ShoppingCart data available for this userId." });
+        return;
+      }
+      const carts = dbShoppingCartData.map((cartItem) => {
+        cartItem.get({ plain: true });
+      });
+      res.render("shoppingcart", { carts, loggedIn: true });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
