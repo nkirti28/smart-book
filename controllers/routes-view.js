@@ -129,6 +129,7 @@ router.get("/book/:id", (req, res) => {
 // DISPLAY ALL Shopping Carts of All Users
 router.get("/shoppingcart", async (req, res) => {
   await ShoppingCart.findAll({
+    where:{user_id: req.session.user_id},
     attributes: ["id", "user_id", "book_id"],
     include: [
       {
