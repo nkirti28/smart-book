@@ -1,6 +1,6 @@
 {{#each this}}
   <div class="col mb-5">
-    <div class="card h-100" style="max-width: 325px">
+    <div class="card h-100" style="max-width: 250px">
       <!-- Product image-->
       <img class="card-img-top h-50" src={{image_url}} alt={{book_name}} />
       <!-- Product details-->
@@ -10,12 +10,12 @@
         <!-- Product name-->
         <h5 class="fw-bolder card-title">{{book_name}}</h5>
         <!-- Product price-->
-        <p class="card-text">{{price}}</p>
+        <p class="card-text">${{price}}</p>
 
       </div>
       <!-- Product actions-->
-      <div class="card-footer text-center p-3">
-        <a class=" btn btn-outline-dark mt-auto" href="/book/{{id}}">Description
+      <div class="card-footer text-center pt-0 border-top-0 bg-transparent p-3">
+        <a class="btn btn-outline-dark mt-auto" href="/book/{{id}}">Description
           and Reviews</a>
         <button type="button" class="addCart-btn btn btn-warning mt-3">Add to Cart</button>
       </div>

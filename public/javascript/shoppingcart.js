@@ -1,5 +1,5 @@
 
-
+// Add to Cart button function
 async function addClickHandler(event) {
   event.preventDefault();
 //grab book id
@@ -29,14 +29,33 @@ async function addClickHandler(event) {
 
 document.querySelector(".addCart-btn").addEventListener("click", addClickHandler);
 
+//Remove from cart button function
+// async function deleteItemHandler(event) {
+//   event.preventDefault();
+
+//   const id = document.getElementById('item').value;
+//   console.log("clicked")
+//   const response = await fetch(`/api/shoppingcart/${id}`, {
+//     method: 'DELETE'
+//   });
+
+//   if (response.ok) {
+//     document.location.replace('/shoppingcart');
+//   } else {
+//     alert(response.statusText);
+//   }
+// }
+
+// document.querySelector(".removeCart-btn").addEventListener("click", deleteItemHandler);
 
 
-$(document).ready(function () {
-  // ******************** Event listeners *********************
-  $(document).on("click", (event) => {
-    // Continue browsing button clicked
-    if ($(event.target).attr("id") === "continueBrowsing") {
-      window.location.href = "/category";
-    }
-  });
-});
+// //Continue browsing button function
+// $(document).ready(function () {
+//   // ******************** Event listeners *********************
+//   $(document).on("click", (event) => {
+//     // Continue browsing button clicked
+//     if ($(event.target).attr("id") === "continueBrowsing") {
+//       window.location.href = "/category";
+//     }
+//   });
+// });
