@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  let cleanedCarts;
   // ******************** Event listeners *********************
   $(document).on("click", (event) => {
     // Continue browsing button clicked
@@ -7,4 +8,18 @@ $(document).ready(function () {
       window.location.href = "/category";
     }
   });
+
+  // const totalPrice = () => {
+  //   console.log("totalPrice");
+
+  //   $.ajax({
+  //     method: "GET",
+  //     URL: "/shoppingcart/",
+  //   }).then((dbShoppingCartData) => {
+  //     let total = 0;
+  //     if (dbShoppingCartData.length > 0) {
+
+  //     }
+  //   });
+  // };
 });
