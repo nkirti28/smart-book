@@ -30,7 +30,7 @@ router.get("/category", (req, res) => {
       const categories = dbCategoryData.map((category) =>
         category.get({ plain: true })
       );
-      res.render("category", { categories });
+      res.render("category", { categories, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.log(err);
@@ -61,7 +61,10 @@ router.get("/category/:id", (req, res) => {
         return;
       }
       const category = dbCategoryData.get({ plain: true });
-      res.render("single-category", { category });
+      res.render("single-category", {
+        category,
+        loggedIn: req.session.loggedIn,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -76,7 +79,7 @@ router.get("/book", (req, res) => {
   })
     .then((dbBookData) => {
       const books = dbBookData.map((book) => book.get({ plain: true }));
-      res.render("book", { books });
+      res.render("book", { books, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.log(err);
@@ -115,7 +118,7 @@ router.get("/book/:id", (req, res) => {
       }
       const book = dbBookData.get({ plain: true });
       console.log(book);
-      res.render("single-book", { book });
+      res.render("single-book", { book, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.log(err);
