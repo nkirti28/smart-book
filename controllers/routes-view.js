@@ -3,15 +3,17 @@ const { response } = require("express");
 const { Category, Book } = require("../models");
 
 router.get("/", (req, res) => {
-  res.render("homepage", { loggedIn: true });
+  res.render("homepage", { loggedIn: req.session.loggedIn });
 });
 
+// LOGIN
 router.get("/login", (req, res) => {
-  res.render("login");
-});
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
 
-router.get("/logout", (req, res) => {
-  res.render("logout");
+  res.render("login");
 });
 
 router.get("/signup", (req, res) => {
