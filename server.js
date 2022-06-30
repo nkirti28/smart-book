@@ -5,11 +5,11 @@ require("dotenv").config();
 const path = require("path");
 
 // helper function
-//const helpers = require("./utils/helpers");
+const helpers = require("./utils/helpers");
 
 // // handlebars
 const exphbs = require("express-handlebars");
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 
 // session (connects session to sequelize Database) --> authentication
 const session = require("express-session");
