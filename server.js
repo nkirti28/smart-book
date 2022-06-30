@@ -5,18 +5,18 @@ require("dotenv").config();
 const path = require("path");
 
 // helper function
- //const helpers = require("./utils/helpers");
+//const helpers = require("./utils/helpers");
 
 // // handlebars
- const exphbs = require("express-handlebars");
+const exphbs = require("express-handlebars");
 const hbs = exphbs.create({});
 
 // session (connects session to sequelize Database) --> authentication
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-const app = express();
 const PORT = process.env.PORT || 3001;
+const app = express();
 
 const sess = {
   secret: "project2 super secret",
@@ -32,10 +32,10 @@ app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
- app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
- app.engine("handlebars", hbs.engine);
- app.set("view engine", "handlebars");
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
 // turn on routes
 app.use(routes);
