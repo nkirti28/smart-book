@@ -51,9 +51,11 @@ document.querySelector(".removeCart-btn").addEventListener("click", deleteItemHa
 
 //Continue browsing button function
 $(document).ready(function () {
+  let cleanedCarts;
   // ******************** Event listeners *********************
   $(document).on("click", (event) => {
     // Continue browsing button clicked
+    console.log("continue browsing button clicked!");
     if ($(event.target).attr("id") === "continueBrowsing") {
       window.location.href = "/category";
     }
