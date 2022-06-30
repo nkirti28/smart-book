@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smart Book</title>
-    {{!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> --}}
+    {{! <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> }}
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -35,18 +35,15 @@
         <a class="navbar-brand text-warning" href="/"><h1>Smart Book</h1></a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           {{#if loggedIn}}
-            {{! <li class="nav-item">
-              <a class="nav-link text-white" href="/profile">My Profile</a>
-            </li> }}
             <li class="nav-item">
               <button
                 id="logout"
                 class="nav-link text-white btn btn-link"
               >Logout</button>
             </li>
-            <li class="nav-item">
+            {{! <li class="nav-item">
               <a class="nav-link text-white" href="/profile">My Profile</a>
-            </li>
+            </li> }}
           {{else}}
             <li class="nav-item">
               <a class="nav-link text-white" href="/login">Login</a>
@@ -133,6 +130,6 @@
     ></script>
     <!-- Core theme JS-->
     {{! <script src="/javascript/search.js"></script> }}
-    {{!-- <script type="text/javascript" src="/javascript/shoppingcart.js"></script> --}}
+    {{! <script type="text/javascript" src="/javascript/shoppingcart.js"></script> }}
   </body>
 </html>
