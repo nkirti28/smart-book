@@ -81,8 +81,12 @@ This app uses the following technologies:
 
 ## Questions
 
-#### Contact me at:
+#### Contributors:
 
-Email: tj.tieso@gmail.com
+Kirti Shelar
+Matthew Grisham
+John Hamilton
+Trevor Tieso
+Kyle Reynolds
 
-Github: [tj-tieso](https://github.com/tj-tieso)
+Github: [kylebreynolds](https://github.com/kylebreynolds)
