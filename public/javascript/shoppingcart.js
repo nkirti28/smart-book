@@ -46,7 +46,7 @@ document.querySelector(".addCart-btn").addEventListener("click", addClickHandler
 //   }
 // }
 
-document.querySelector(".removeCart-btn").addEventListener("click", deleteItemHandler);
+// document.querySelector(".removeCart-btn").addEventListener("click", deleteItemHandler);
 
 
 //Continue browsing button function
