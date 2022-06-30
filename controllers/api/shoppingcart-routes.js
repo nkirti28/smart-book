@@ -38,42 +38,42 @@ router.get("/", async (req, res) => {
 // Get route for retrieving a single shoppingcart for a user_id
 // GET one shopping cart for a user_id
 // Use the custom middleware before allowing the user to access the shopping cart
-// router.get("/:user_id", withAuth, async (req, res) => {
-//   try {
-//     await ShoppingCart.findAll({
-//       where: {
-//         user_id: req.params.user_id,
-//       },
-//       include: [
-//         {
-//           model: User,
-//           attributes: ["id", "username"],
-//         },
-//         {
-//           model: Book,
-//           attributes: ["id", "book_name", "price"],
-//         },
-//       ],
-//     }).then((dbShoppingCartData) => {
-//       if (!dbShoppingCartData) {
-//         res
-//           .status(404)
-//           .json({ message: "No ShoppingCart data available for this userId." });
-//         return;
-//       }
-//       console.log("In .get /api/shoppingcart/user_id - findAll()");
-//       res.json(dbShoppingCartData);
-//     });
-    //const shoppingcart = shoppingCartData.get({ plain: true });
+router.get("/:user_id", withAuth, async (req, res) => {
+  try {
+    await ShoppingCart.findAll({
+      where: {
+        user_id: req.params.user_id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+        {
+          model: Book,
+          attributes: ["id", "book_name", "price"],
+        },
+      ],
+    }).then((dbShoppingCartData) => {
+      if (!dbShoppingCartData) {
+        res
+          .status(404)
+          .json({ message: "No ShoppingCart data available for this userId." });
+        return;
+      }
+      console.log("In .get /api/shoppingcart/user_id - findAll()");
+      res.json(dbShoppingCartData);
+    });
+    // const shoppingcart = shoppingCartData.get({ plain: true });
     // res.render("shoppingcart", {
     //   shoppingcart,
     //   loggedIn: req.session.loggedIn,
     // });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // POST request to save new shopping cart for user in session
 router.post("/", async (req, res) => {
@@ -114,89 +114,89 @@ router.put("/", async (req, res) => {
 });
 
 // DELETE /shoppingCartData/delete with user_id
-// router.delete("/:user_id", async (req, res) => {
-//   try {
-//     ShoppingCart.destroy({
-//       where: {
-//         user_id: req.session.user_id,
-//       },
-//     }).then((dbShoppingCartData) => {
-//       if (!dbShoppingCartData) {
-//         res
-//           .status(404)
-//           .json({ message: "No Shopping cart data found for this user_id." });
-//         return;
-//       }
-//       res.json(dbShoppingCartData);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err); // 404 error response
-//   }
-// });
-
-
-//Kyle's routes
-router.delete('/:id', (req, res) => {
-  ShoppingCart.destroy({
-    where: {
-      id: req.params.id
-    },
-    attributes: ['id', 'created_at', 'updated_at'],
-    include: [
-        {
-            model: User,
-            attributes: ['id', 'username']
-        },
-        {
-          model: Book,
-          attributes: ['id', 'book_name', 'price']
+router.delete("/:user_id", async (req, res) => {
+  try {
+    ShoppingCart.destroy({
+      where: {
+        user_id: req.session.user_id,
       },
-    ]
-  })
-    .then(dbShoppingCartData => {
+    }).then((dbShoppingCartData) => {
       if (!dbShoppingCartData) {
-        res.status(404).json({ message: 'No Book found with this id!' });
+        res
+          .status(404)
+          .json({ message: "No Shopping cart data found for this user_id." });
         return;
       }
       res.json(dbShoppingCartData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
     });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err); // 404 error response
+  }
 });
 
-router.get('/:id', (req, res) => {
 
-  ShoppingCart.findOne({
-    where: {
-        id: req.params.id
-    },
-    attributes: ['id', 'created_at', 'updated_at'],
-    include: [
-        {
-            model: User,
-            attributes: ['id', 'username']
-        },
-        {
-          model: Book,
-          attributes: ['id', 'book_name', 'price']
-      },
-    ]
-  })
-    .then(dbShoppingCartData => {
-        if (!dbShoppingCartData) {
-            res.status(404).json({ message: 'No book found with this id' });
-            return;
-        }
-        res.json(dbShoppingCartData);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
+// //Kyle's routes
+// router.delete('/:id', (req, res) => {
+//   ShoppingCart.destroy({
+//     where: {
+//       id: req.params.id
+//     },
+//     attributes: ['id', 'created_at', 'updated_at'],
+//     include: [
+//         {
+//             model: User,
+//             attributes: ['id', 'username']
+//         },
+//         {
+//           model: Book,
+//           attributes: ['id', 'book_name', 'price']
+//       },
+//     ]
+//   })
+//     .then(dbShoppingCartData => {
+//       if (!dbShoppingCartData) {
+//         res.status(404).json({ message: 'No Book found with this id!' });
+//         return;
+//       }
+//       res.json(dbShoppingCartData);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
+
+// router.get("/:user_id", withAuth,(req, res) => {
+
+//   ShoppingCart.findAll({
+//     where: {
+//         id: req.params.id
+//     },
+//     attributes: ['id', 'created_at', 'updated_at'],
+//     include: [
+//         {
+//             model: User,
+//             attributes: ['id', 'username']
+//         },
+//         {
+//           model: Book,
+//           attributes: ['id', 'book_name', 'price']
+//       },
+//     ]
+//   })
+//     .then(dbShoppingCartData => {
+//         if (!dbShoppingCartData) {
+//             res.status(404).json({ message: 'No book found with this id' });
+//             return;
+//         }
+//         res.json(dbShoppingCartData);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// });
 
 // LOGOUT
 router.post("/logout", (req, res) => {

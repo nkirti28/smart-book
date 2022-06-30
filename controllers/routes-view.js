@@ -126,7 +126,7 @@ router.get("/book/:id", (req, res) => {
     });
 });
 
-// DISPLAY ALL Shopping Carts of All Users
+//DISPLAY ALL Shopping Carts of All Users
 router.get("/shoppingcart", async (req, res) => {
   await ShoppingCart.findAll({
     attributes: ["id", "user_id", "book_id"],
@@ -155,15 +155,15 @@ router.get("/:user_id", withAuth, async (req, res) => {
       where: {
         user_id: req.session.user_id,
       },
-      attributes: ["id", "user_id", "book_id"],
+      attributes: ["id", "created_at", "updated_at"],
       include: [
         {
           model: User,
-          attributes: ["username"],
+          attributes: ["id","username"],
         },
         {
           model: Book,
-          attributes: ["book_name", "price"],
+          attributes: ["id", "book_name", "price"],
         },
       ],
     }).then((dbShoppingCartData) => {

@@ -29,7 +29,7 @@ async function addClickHandler(event) {
 
 document.querySelector(".addCart-btn").addEventListener("click", addClickHandler);
 
-//Remove from cart button function
+// //Remove from cart button function
 // async function deleteItemHandler(event) {
 //   event.preventDefault();
 
@@ -46,16 +46,16 @@ document.querySelector(".addCart-btn").addEventListener("click", addClickHandler
 //   }
 // }
 
-// document.querySelector(".removeCart-btn").addEventListener("click", deleteItemHandler);
+document.querySelector(".removeCart-btn").addEventListener("click", deleteItemHandler);
 
 
-// //Continue browsing button function
-// $(document).ready(function () {
-//   // ******************** Event listeners *********************
-//   $(document).on("click", (event) => {
-//     // Continue browsing button clicked
-//     if ($(event.target).attr("id") === "continueBrowsing") {
-//       window.location.href = "/category";
-//     }
-//   });
-// });
+//Continue browsing button function
+$(document).ready(function () {
+  // ******************** Event listeners *********************
+  $(document).on("click", (event) => {
+    // Continue browsing button clicked
+    if ($(event.target).attr("id") === "continueBrowsing") {
+      window.location.href = "/category";
+    }
+  });
+});
