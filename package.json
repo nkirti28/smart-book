@@ -7,8 +7,8 @@
     "node": "16.15.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm start",
+    "test": "jest",
+    "start": "node server.js",
     "watch": "nodemon server.js",
     "seed": "node seeds/index.js"
   },
